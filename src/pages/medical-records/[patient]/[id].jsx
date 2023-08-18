@@ -1,4 +1,4 @@
-import Layout from "@/components/layout";
+import Layout from "@/components/Layout";
 import { ROLES } from "@/shared/constants";
 
 const MedicalRecordPage = ({id}) => {

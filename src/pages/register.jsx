@@ -1,4 +1,4 @@
-import Layout from "@/components/layout";
+import Layout from "@/components/Layout";
 import { useAuthStore } from "@/context/authContext";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
