@@ -1,3 +1,7 @@
+## This project is still in development (overdue)
+
+This project was created as requirement for a presentation, but i couldn't finish in time, the pages are there but the components, and requests other than authentication are missing. The backend is mostly functional. Still i think it's better to show something and put some effort than doing nothing. I'll keep working on this project until i feel satisfied and maybe do other changes periodicaly. Feel free to watch, clone or contribute.
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
