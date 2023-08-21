@@ -2,41 +2,57 @@ import Layout from "@/components/Layout";
 import { useAuthStore } from "@/context/authContext";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 
 function Login(){
     const {user, error, signIn} = useAuthStore();
     const router = useRouter();
     const {redirect} = router.query;
 
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
+    const {
+        register,
+        getValues,
+        handleSubmit,
+        formState: {errors, isValid}
+    } = useForm({mode: 'onChange'});
 
+    // Define the routes elsewhere
     useEffect(()=>{
         if(user) router.push(redirect || '/home');
     }, [user, router, redirect]);
 
-    const login = async(e)=>{
-        e.preventDefault();
-
-        await signIn({username, password});
+    const onSubmit = async(data)=>{
+        return;
     };
 
     return(
         <Layout title="login">
             <h1>Login</h1>
             {error && <div>{error}</div>}
-            <form>
+            <form onSubmit={handleSubmit(onSubmit)}>
                 <div>
                     <label htmlFor="username">Usernane</label>
-                    <input type="text" id="username" value={username} onChange={e => setUsername(e.target?.value)}/>
+                    <input type="text" id="username" {...register('username', {
+                        required: {
+                            value: true,
+                            message: 'Username is required!'
+                        }
+                    })} autoFocus/>
+                    {errors.username && <span className=''>{errors.username.message}</span>}
                 </div>
 
                 <div>
                     <label htmlFor="password">Password</label>
-                    <input type="password" id="password" value={password} onChange={e => setPassword(e.target?.value)}/>
+                    <input type="password" id="password" {...register('password', {
+                        required: {
+                            value: true,
+                            message: 'Password is required!'
+                        }
+                    })} autoFocus/>
+                    {errors.password && <span className=''>{errors.password.message}</span>}
                 </div>
 
-                <button type="submit" onClick={login}>signin</button>
+                <button type="submit">signin</button>
             </form>
         </Layout>
     );

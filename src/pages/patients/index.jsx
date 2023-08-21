@@ -1,12 +1,18 @@
 import Layout from "@/components/Layout";
 import PatientsList from "@/components/patients/PatientsList";
+import { useAuthStore } from "@/context/authContext";
 import { ROLES } from "@/shared/constants";
 import { useEffect, useState } from "react";
 
 const PatientsPage = () =>{
+    const {user} = useAuthStore();
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [patients, setPatients] = useState([]);
+
+    useEffect(()=>{
+        console.log(user);
+    }, [user]);
 
     useEffect(()=>{
         loadPatients();
@@ -44,10 +50,10 @@ const PatientsPage = () =>{
     );
 };
 
-// PatientsPage.auth = {
-//     roles: [
-//         ROLES.HEALTHCARE_PROVIDER
-//     ],
-// };
+PatientsPage.auth = {
+    roles: [
+        ROLES.HEALTHCARE_PROVIDER
+    ],
+};
 
 export default PatientsPage;
